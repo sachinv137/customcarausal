@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body{
+            margin:0;padding: 0;
+        }
+.box{display: block;width: 100%; position: relative;}
+.box div{
+    width: 100%;
+}
+.box div img{
+    width: 100%;    
+    height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.box .arrow{
+    position: absolute;
+    top: 48%;
+}
+
+.box .arrow a{
+    color:#fff;
+    padding: 10px;
+    background-color: rgb(0 0 0 / 74%);
+    text-decoration: none;
+}
+.box .arrow a.prev{
+    position: absolute;
+    left:0;
+}
+.box .arrow a.next{
+    position: absolute;
+    right:0;
+}
+.img-div{
+    display: none;
+}
+       </style>  
+</head>
+<body>
+
+    <div class="box">
+        <div class="arrow"><a class="prev" href="javascript:void(0);" onclick="prev()">&lt;</a></div>
+        <div class="arrow"><a class="next" href="javascript:void(0);">&gt;</a></div>
+        <div class="slide">
+        <div class="img-div"><img src="https://www.gstatic.com/webp/gallery/1.jpg" alt="image"></div>
+        <div class="img-div"><img src="https://www.gstatic.com/webp/gallery/2.webp" alt="image"></div>
+        <div class="img-div"><img src="https://www.gstatic.com/webp/gallery/4.jpg" alt="image"></div>
+        </div>
+    </div>
+   
+</body>
+<script>
+    
+    $(document).ready(function(){
+        let flag = 0;
+        let number = $('.slide').find('.img-div').siblings();
+        $(number[flag]).fadeIn();
+        let lenth = $('.slide').find('.img-div').siblings().length;
+
+        $('.next').click(function(){
+            flag = flag + 1;
+            $(number).hide();
+            if(flag == lenth){
+                flag = 0; 
+                $(number[flag]).fadeIn();
+            }
+            else{
+            $(number[flag]).fadeIn();
+              }
+        });
+
+
+        $('.prev').click(function(){
+            
+             if(flag == 0){
+                 flag = lenth;
+                 $(number[flag]).fadeIn();
+             }
+             else{
+                flag = flag - 1;
+             $(number).hide();
+                $(number[flag]).fadeIn();
+             }
+        });
+    });
+
+  
+
+
+</script>
+</html>
